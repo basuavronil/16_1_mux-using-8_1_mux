@@ -1,0 +1,13 @@
+module mux_16_1(
+ input [15:0] I,
+ input [3:0] sel,
+ output y
+    );
+ wire [2:0] w;
+ //instanciating the module
+ mux_8_1 dut1(.I(I[7:0]), .sel(sel[2:0]), .y(w[0]));
+ mux_8_1 dut2(.I(I[15:8]), .sel(sel[2:0]), .y(w[1]));
+ mux_8_1 dut3(.I({6'b000000, w[1:0]}), .sel({2'b00, sel[3]}), .y(w[2]));
+ assign y = w[2];
+ 
+endmodule
